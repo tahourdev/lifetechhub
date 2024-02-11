@@ -1,6 +1,6 @@
-'use client';
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-scroll';
+"use client";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-scroll";
 
 const TableContent = ({ contents }) => {
   const [isSticky, setIsSticky] = useState(false);
@@ -11,27 +11,28 @@ const TableContent = ({ contents }) => {
   };
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
   const contentTable = contents.map((text) => {
-    if (text.type === 'heading-two') {
+    if (text.type === "heading-two") {
       const link = text.id;
 
       {
         return (
           <li>
             <Link
-              className='font-normal px-2 hover:text-red-400 cursor-pointer'
-              activeClass='active'
+              className="cursor-pointer px-2 font-normal hover:text-red-400"
+              activeClass="active"
               spy={true}
               // offset={-70}
               duration={500}
-              to={link}>
+              to={link}
+            >
               {text.children.map((headingText) => headingText.text)}
             </Link>
           </li>
@@ -44,9 +45,12 @@ const TableContent = ({ contents }) => {
   return (
     <div
       className={`${
-        isSticky ? 'top-14 opacity-100' : 'top-32 opacity-0'
-      } relative transition-all duration-300 ease-linear border-r-2 border-slate-300/50`}>
-      <ul className='prose prose-a:no-underline prose-a:text-slate-600'>{contentTable}</ul>
+        isSticky ? "top-14 opacity-100" : "top-32 opacity-0"
+      } relative border-r-2 border-slate-300/50 transition-all duration-300 ease-linear`}
+    >
+      <ul className="prose prose-a:text-slate-600 prose-a:no-underline">
+        {contentTable}
+      </ul>
     </div>
   );
 };
