@@ -5,13 +5,15 @@ import React from 'react';
 import readingTime from 'reading-time';
 import Socials from '../social';
 import RawContent from './RawContent';
-import HtmlContent from './HtmlContent';
+// import HtmlContent from './HtmlContent';
 import RecommededPosts from './RecommededPosts';
 import TableContent from './TableContent';
-import Zoom from 'react-medium-image-zoom';
+// import Zoom from 'react-medium-image-zoom';
 import 'react-medium-image-zoom/dist/styles.css';
+import { generateIdFromTitle, windwoScroll } from '../utils';
 
 export default async function PostDetails({ postDetails, slug }) {
+  const rawContent = postDetails.content.raw.children;
   const categories = postDetails.categories.map((cat) => cat.name);
   const catSlug = postDetails.categories.map((cat) => cat.slug);
   const author = postDetails.author.name;
@@ -20,11 +22,31 @@ export default async function PostDetails({ postDetails, slug }) {
   const featuredImage = postDetails.featuredImage.url;
   const timeReading = readingTime(postDetails.content.html).text;
 
+  // Inject IDs and anchor links into all h2 tags
+  const modifiedContent = rawContent.map((child) => {
+    if (child.type === 'heading-two') {
+      const title = child.children[0].text;
+      const id = generateIdFromTitle(title);
+      return {
+        ...child,
+        id, // Inject ID
+        children: [
+          {
+            ...child.children[0],
+            text: `${title}`, // Inject anchor link
+          },
+        ],
+      };
+    } else {
+      return child;
+    }
+  });
+
   return (
     <div className='max-w-screen-5xl 5xl:mx-auto md:px-14 sm:px-4 px-0 transition-all duration-[.4s] ease'>
       <div className='grid grid-cols-12 gap-y-12 gap-x-10'>
         <div className='4xl:col-span-3 sticky top-24 h-screen'>
-          <TableContent postDetails={postDetails} />
+          <TableContent contents={modifiedContent} />
         </div>
         <div className='4xl:col-span-6 3xl:col-span-8 col-span-12 space-y-12'>
           <div className='sm:px-0 px-4'>
@@ -43,10 +65,10 @@ export default async function PostDetails({ postDetails, slug }) {
               </div>
               <Socials />
             </div>
-            <article className='prose'>
+            <article className='prose prose-lg font-outfit'>
               {/* Header text */}
               <div>
-                <h3 className='prose-xl mb-4 text-center'>{header}</h3>
+                <h3 className='prose-2xl mb-4 text-center'>{header}</h3>
                 <div className='border-b-2' />
               </div>
 
@@ -60,8 +82,8 @@ export default async function PostDetails({ postDetails, slug }) {
               />
 
               {/* body text */}
-              <HtmlContent postDetails={postDetails} />
-              <RawContent content={postDetails} />
+              {/* <HtmlContent postDetails={postDetails} /> */}
+              <RawContent contents={modifiedContent} />
             </article>
             <Socials />
             <div className='border-b-2 my-8' />

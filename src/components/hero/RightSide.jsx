@@ -24,7 +24,7 @@ const RightSide = ({ nextThreePost }) => {
           </p>
         ))}
         <Link href={`/articles/${nextThreePost.node.slug}`}>
-          <p className='xl:text-base text-xs font-semibold hover:text-green-600 hover:underline decoration-green-600 line-clamp-2 pt-3 transition-all duration-100 text-slate-00 ease'>
+          <p className='xl:text-lg text-xs font-semibold text-slate-700 hover:text-green-600 hover:underline decoration-green-600 line-clamp-2 pt-3 transition-all duration-100 ease'>
             {nextThreePost.node.title}
           </p>
         </Link>

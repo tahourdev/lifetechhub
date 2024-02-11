@@ -1,50 +1,20 @@
-function RawContent({ content }) {
-  const rawContent = content.content.raw.children;
-  // Function to generate an ID from the title
-  const generateIdFromTitle = (title) => {
-    // Remove leading numbers followed by a dot and trim spaces
-    const id = title.replace(/^\d+\.\s*/, '').trim();
-    // Remove question marks
-    const idWithoutQuestionMarks = id.replace(/\?/g, '');
-    // Replace spaces, dots, and question marks with dashes and convert to lowercase
-    return idWithoutQuestionMarks.toLowerCase().replace(/[ .?]/g, '-');
-  };
+import clsx from 'clsx';
 
-  // Inject IDs and anchor links into all h2 tags
-  const modifiedContent = rawContent.map((child) => {
-    if (child.type === 'heading-two') {
-      const title = child.children[0].text;
-      const id = generateIdFromTitle(title);
-      return {
-        ...child,
-        id, // Inject ID
-        children: [
-          {
-            ...child.children[0],
-            text: `${title}`, // Inject anchor link
-          },
-        ],
-      };
-    } else {
-      return child;
-    }
-  });
-  console.log(modifiedContent);
-
+function RawContent({ contents }) {
   return (
     <article>
-      {modifiedContent.map((child, index) => {
+      {contents.map((child, index) => {
         if (child.type === 'heading-two') {
           // Render h2 tag with ID and anchor link
           return (
-            <h2 id={child.id} key={index}>
+            <h2 className='font-medium text-slate-800' id={child.id} key={index}>
               {child.children[0].text}
             </h2>
           );
         } else if (child.type === 'paragraph') {
           // Render paragraph tag
           return (
-            <p key={index}>
+            <p className='text-slate-700 font-[400]' key={index}>
               {child.children.map((textNode, index) => (
                 <>
                   <span className={textNode.bold ? 'font-bold' : ''} key={index}>

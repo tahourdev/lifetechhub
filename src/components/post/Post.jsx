@@ -21,7 +21,7 @@ const Post = ({ cover, cat, title, desc, author, createdAt, slug }) => {
           </p>
           <Link
             href={`/articles/${slug}`}
-            className='text-base hover:text-green-600 line-clamp-2 hover:underline decoration-green-600 transition-all duration-100 ease text-slate-800 cursor-pointer font-semibold'>
+            className='text-base hover:text-green-600 line-clamp-2 hover:underline decoration-green-600 transition-all duration-100 ease font-semibold text-slate-700 cursor-pointer '>
             {title}
           </Link>
           <p className='text-sm text-slate-600 line-clamp-3'>{desc}</p>

@@ -5,8 +5,6 @@ import Image from 'next/image';
 import moment from 'moment';
 
 const LeftSide = ({ firstPost }) => {
-  console.log(firstPost);
-
   return (
     <div className='lg:col-span-6 col-span-full transition-all duration-[.4s] ease'>
       <Link href={`/articles/${firstPost?.slug}`}>
@@ -25,7 +23,7 @@ const LeftSide = ({ firstPost }) => {
               <p className='md:text-base text-xs'>{cat.name}</p>
             </div>
           ))}
-          <p className='lg:text-2xl hover:text-green-600 hover:underline decoration-green-600 text-base font-semibold text-slate-800 transition-all duration-100 ease'>
+          <p className='lg:text-2xl hover:text-green-600 hover:underline decoration-green-600 text-base font-semibold text-slate-700 transition-all duration-100 ease'>
             {firstPost?.title}
           </p>
           <p className='xl:text-sm 2xl:text-base text-slate-500 text-xs font-normal line-clamp-3 transition-all duration-[.4s] ease'>

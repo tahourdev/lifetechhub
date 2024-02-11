@@ -1,4 +1,4 @@
-import { Inter, Outfit } from 'next/font/google';
+import { Inter, Outfit, IBM_Plex_Sans } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
@@ -6,6 +6,12 @@ import clsx from 'clsx';
 import Categories from '@/components/header/Categories';
 import NextTopLoader from 'nextjs-toploader';
 
+const ibmplexsans = IBM_Plex_Sans({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-ibm',
+  weight: ['100', '200', '300', '400', '500', '600', '700'],
+});
 const inter = Inter({ subsets: ['latin'], display: 'swap', variable: '--font-in' });
 const outfit = Outfit({ subsets: ['latin'], display: 'swap', variable: '--font-outfit' });
 
@@ -19,8 +25,9 @@ export default function RootLayout({ children }) {
     <html lang='en'>
       <body
         className={clsx(
-          inter.className,
-          outfit.className,
+          ibmplexsans.className,
+          // inter.className,
+          // outfit.className,
           'w-full bg-primary overflow-hidden selection:bg-secondary selection:text-primary'
         )}>
         <NextTopLoader showSpinner={true} height={5} color='#27AE60' easing='cubic-bezier(0.53,0.21,0,1)' />

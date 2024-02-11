@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { MdOutlineMenu, MdOutlineClose } from 'react-icons/md';
 import { clsx } from 'clsx';
 import Divided from '@/components/dividedSection';
-import Categories from './Categories';
 
 const Header = () => {
   const [toggle, setToggle] = useState(false);
