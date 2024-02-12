@@ -41,7 +41,7 @@ const TableContent = ({ contents }) => {
     }
     return null;
   });
-  // console.log(headingText || []);
+
   return (
     <div
       className={`${

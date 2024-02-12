@@ -2,8 +2,7 @@ import moment from "moment";
 import Link from "next/link";
 import React from "react";
 
-const CatPostItem = ({ post }) => {
-  console.log(post.createdAt);
+const PostItem = ({ post }) => {
   return (
     <article className="grid grid-cols-12 space-x-8">
       <Link
@@ -40,4 +39,4 @@ const CatPostItem = ({ post }) => {
   );
 };
 
-export default CatPostItem;
+export default PostItem;

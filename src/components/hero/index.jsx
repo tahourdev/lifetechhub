@@ -1,8 +1,8 @@
 // 'use client';
-import React from 'react';
-import LeftSide from './LeftSide';
-import RightSide from './RightSide';
-import { getPosts } from '../../../services';
+import React from "react";
+import LeftSide from "./LeftSide";
+import RightSide from "./RightSide";
+import { getPosts } from "../../../services";
 
 export default async function Hero() {
   // const [loading, setLoading] = useState(true);
@@ -12,9 +12,9 @@ export default async function Hero() {
   const nextThreePosts = featuredPosts.slice(1, 4);
 
   return (
-    <div className='grid grid-cols-12 md:gap-8 md:space-y-0 space-y-8 place-items-start my-10 transition-all duration-[.4s] ease'>
+    <div className="my-10 grid grid-cols-12 place-items-start space-y-8 transition-all duration-[.4s] ease-in-out md:gap-8 md:space-y-0">
       <LeftSide firstPost={firstPost} />
-      <div className='lg:col-span-6 col-span-full xl:space-y-8 md:space-y-4 space-y-8 transition-all duration-[.4s] ease'>
+      <div className=" col-span-full space-y-8 transition-all duration-[.4s] ease-in-out md:space-y-4 lg:col-span-6 xl:space-y-8">
         {nextThreePosts.map((nextThreePost, index) => (
           <div key={index}>
             <RightSide nextThreePost={nextThreePost} />

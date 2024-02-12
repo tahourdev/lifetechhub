@@ -1,10 +1,9 @@
 // 'use client';
-import React from 'react';
-import PostByCat from './PostByCat';
-import { getCategories } from '../../../services';
-import Post from './CatPostItem';
-import SectionPost from './SectionPost';
-import Link from 'next/link';
+import React from "react";
+import PostByCat from "./PostByCat";
+import { getCategories } from "../../../services";
+import SectionPost from "./SectionPost";
+import Link from "next/link";
 
 export const Cats = async () => {
   // const [catPosts, setCatPosts] = useState([]);
@@ -19,8 +18,13 @@ export const Cats = async () => {
   return (
     <>
       {catPosts.map((post, index) => (
-        <div key={index} className='w-full'>
-          <SectionPost link={post.slug} title={post.name} more='See All' see={true} />
+        <div key={index} className="w-full">
+          <SectionPost
+            link={post.slug}
+            title={post.name}
+            more="See All"
+            see={true}
+          />
           <PostByCat posts={post.posts} />
         </div>
       ))}

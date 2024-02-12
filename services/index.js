@@ -1,4 +1,4 @@
-import { request, gql } from 'graphql-request';
+import { request, gql } from "graphql-request";
 
 const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
 
@@ -97,7 +97,13 @@ export const getSinglePostDetails = async (slug) => {
 export const getRecommendedPosts = async (slug, categories) => {
   const query = gql`
     query getRecommendedPosts($slug: String!, $categories: [String]) {
-      posts(where: { slug_not: $slug, OR: { categories_some: { name_in: $categories } } }, last: 3) {
+      posts(
+        where: {
+          slug_not: $slug
+          OR: { categories_some: { name_in: $categories } }
+        }
+        last: 3
+      ) {
         title
         slug
         excerption
@@ -153,4 +159,30 @@ export const getPostsByCat = async (slug) => {
   `;
   const result = await request(graphqlAPI, query, { slug });
   return result.category;
+};
+
+export const getPostBySearch = async (title) => {
+  const query = gql`
+    query getPostBySearch($title: String) {
+      posts(where: { _search: $title }) {
+        title
+        createdAt
+        slug
+        featuredImage {
+          url
+        }
+        categories {
+          name
+        }
+        author {
+          name
+          photo {
+            url
+          }
+        }
+      }
+    }
+  `;
+  const result = await request(graphqlAPI, query, { title });
+  return result.posts;
 };

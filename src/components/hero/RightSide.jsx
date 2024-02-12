@@ -1,43 +1,49 @@
-import React from 'react';
-import { products } from '@/constant/data';
-import Link from 'next/link';
-import moment from 'moment';
+import React from "react";
+import Link from "next/link";
+import moment from "moment";
 
 const RightSide = ({ nextThreePost }) => {
   return (
-    <div className='grid grid-cols-12 xl:gap-6 gap-4 transition-all duration-300 ease'>
-      <div className='2xl:col-span-6 md:col-span-5 place-self-start col-span-6 sm:rounded-xl overflow-hidden transition-all duration-[.4s] ease'>
+    <div className="grid grid-cols-12 gap-4 transition-all duration-300 ease-in-out xl:gap-6">
+      <div className="ease col-span-6 place-self-start overflow-hidden transition-all duration-[.4s] sm:rounded-xl md:col-span-5 2xl:col-span-6">
         <Link href={`/articles/${nextThreePost.node.slug}`}>
           <img
-            className='sm:rounded-xl aspect-video hover:scale-110 hover:hue-rotate-30 transition-all duration-300 ease overflow-hidden cursor-pointer bg-center object-cover bg-contain'
+            className="aspect-video cursor-pointer overflow-hidden bg-contain bg-center object-cover transition-all duration-300 ease-in-out hover:scale-110 hover:hue-rotate-30 sm:rounded-xl"
             src={nextThreePost?.node.featuredImage.url}
-            alt=''
+            alt=""
           />
         </Link>
       </div>
-      <div className='2xl:col-span-6 pr-4 lg:pr-0 md:col-span-7 col-span-6 space-y-3 transition-all duration-[.4s] ease'>
+      <div className="ease col-span-6 space-y-3 pr-4 transition-all duration-[.4s] md:col-span-7 lg:pr-0 2xl:col-span-6">
         {nextThreePost?.node.categories.map((cat) => (
           <p
             key={cat.name}
-            className='max-w-fit border border-solid border-green-400 rounded-lg px-3 py-1 xl:text-xs text-[10px]'>
+            className="max-w-fit rounded-lg border border-solid border-green-400 px-3 py-1 text-[10px] xl:text-xs"
+          >
             {cat.name}
           </p>
         ))}
         <Link href={`/articles/${nextThreePost.node.slug}`}>
-          <p className='xl:text-lg text-xs font-semibold text-slate-700 hover:text-green-600 hover:underline decoration-green-600 line-clamp-2 pt-3 transition-all duration-100 ease'>
+          <p className="ease line-clamp-2 pt-3 text-xs font-semibold text-slate-700 decoration-green-600 transition-all duration-100 hover:text-green-600 hover:underline xl:text-lg">
             {nextThreePost.node.title}
           </p>
         </Link>
-        <p className='xl:text-sm text-slate-500 text-[10px] font-normal line-clamp-3 transition-all duration-[.4s] ease'>
+        <p className="ease line-clamp-3 text-[10px] font-normal text-slate-500 transition-all duration-[.4s] xl:text-sm">
           {nextThreePost?.node.excerption}
         </p>
-        <div className='flex space-x-3 items-center'>
-          <div className='h-8 w-8 rounded-full overflow-hidden transition-all duration-[.4s] ease'>
-            <img className='w-full' src={nextThreePost?.node.author.photo.url} alt='' />
+        <div className="flex items-center space-x-3">
+          <div className="ease h-8 w-8 overflow-hidden rounded-full transition-all duration-[.4s]">
+            <img
+              className="w-full"
+              src={nextThreePost?.node.author.photo.url}
+              alt=""
+            />
           </div>
-          <div className='text-slate-500 font-medium text-xs'>
+          <div className="text-xs font-medium text-slate-500">
             <p>{nextThreePost?.node.author.name}</p>
-            <time>{moment(nextThreePost?.node.createdAt).format('MMM DD')}</time>
+            <time>
+              {moment(nextThreePost?.node.createdAt).format("MMM DD")}
+            </time>
           </div>
         </div>
       </div>

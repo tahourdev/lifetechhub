@@ -1,8 +1,11 @@
-'use client';
-import clsx from 'clsx';
-import Link from 'next/link';
-import React, { useState, useEffect } from 'react';
-import Search from './Search';
+"use client";
+import clsx from "clsx";
+import Link from "next/link";
+import React, { useState, useEffect } from "react";
+import Search from "../Search/Search";
+import { getPostBytitle } from "../../../services";
+import { debounce } from "lodash";
+import SearchPosts from "../Search/SearchPosts";
 
 const Categories = () => {
   const [isSticky, setIsSticky] = useState(false);
@@ -13,41 +16,57 @@ const Categories = () => {
   };
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
   return (
     <nav
       className={clsx(
-        `max-w-screen-5xl mx-auto md:px-14 sm:px-4 px-0 transition-all duration-[.4s] ease w-full`,
-        isSticky && 'sticky sm:top-2 top-0 z-50',
-        !isSticky && 'sticky -top-40'
-      )}>
-      <div className='w-full my-4 gap-4  flex justify-between items-center'>
-        <ul
-          className={clsx(
-            `inline-flex lg:basis-3/4 basis-full transition-all duration-300 ease-in snap-x bg-secondary p-1 sm:rounded-full rounded-r-full shadow-md gap-4 divide-x no-scrollbar overflow-auto`,
-            isSticky && 'bg-secondary/80 backdrop-blur-md'
-          )}>
-          {['Home', 'Technology', 'Health', 'Travel', 'Lifestyle', 'How to and Tutorial', 'Culture'].map(
-            (cat, index) => (
+        `ease mx-auto w-full max-w-screen-5xl px-0 transition-all duration-[.4s] sm:px-4 md:px-14`,
+        isSticky && "sticky top-0 z-50 sm:top-2",
+        !isSticky && "sticky -top-40",
+      )}
+    >
+      <div className="relative my-4 w-full ">
+        <div className=" flex items-center justify-between gap-4">
+          <ul
+            className={clsx(
+              `no-scrollbar inline-flex basis-full snap-x gap-4 divide-x overflow-auto rounded-r-full bg-secondary p-1 shadow-md transition-all duration-300 ease-in sm:rounded-full lg:basis-3/4`,
+              isSticky && "bg-secondary/80 backdrop-blur-md",
+            )}
+          >
+            {[
+              "Home",
+              "Technology",
+              "Health",
+              "Travel",
+              "Lifestyle",
+              "How to and Tutorial",
+              "Culture",
+            ].map((cat, index) => (
               <li
                 key={index}
-                className='md:text-base snap-center text-sm hover:bg-red-400 cursor-pointer p-2 whitespace-nowrap rounded-full transition-all duration-300 ease-in-out text-white font-normal'>
+                className="cursor-pointer snap-center whitespace-nowrap rounded-full p-2 text-sm font-normal text-white transition-all duration-300 ease-in-out hover:bg-red-400 md:text-base"
+              >
                 <Link
-                  className='block px-6'
-                  href={cat === 'Home' ? '/' : `/categories/${cat.toLowerCase().replace(/\s+/g, '-')} `}>
+                  className="block px-6"
+                  href={
+                    cat === "Home"
+                      ? "/"
+                      : `/categories/${cat.toLowerCase().replace(/\s+/g, "-")} `
+                  }
+                >
                   {cat}
                 </Link>
               </li>
-            )
-          )}
-        </ul>
-        <Search />
+            ))}
+          </ul>
+          <Search />
+        </div>
       </div>
     </nav>
   );
