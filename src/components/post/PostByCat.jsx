@@ -4,7 +4,6 @@ import { products } from "@/constant/data";
 import PostItem from "./PostItem";
 
 const PostByCat = ({ posts }) => {
-  console.log(posts);
   return (
     <div className="w-full">
       <div className="space-y-8">

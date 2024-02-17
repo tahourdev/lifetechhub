@@ -31,7 +31,7 @@ const Post = ({
             <p className="inline-block rounded-lg border border-solid border-green-400 px-3 py-1 text-xs">
               {cat}
             </p>
-            <p className="text-xs font-medium text-slate-700">{timeReading}</p>
+            <p>{timeReading}</p>
           </div>
           <Link
             href={`/articles/${slug}`}

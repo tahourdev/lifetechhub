@@ -13,13 +13,13 @@
 
 @layer components {
   .mobile_nav-active {
-    @apply before:absolute before:box-content before:h-full before:w-[4px] before:bg-red-500 before:left-0 before:top-0 before:bottom-0;
+    @apply before:absolute before:bottom-0 before:left-0 before:top-0 before:box-content before:h-full before:w-[4px] before:bg-red-500;
   }
   .desk_nav-active {
-    @apply after:absolute after:left-0 after:right-0 after:bottom-0 after:w-full after:rounded-sm after:h-[4px] after:box-content after:bg-red-500;
+    @apply after:absolute after:bottom-0 after:left-0 after:right-0 after:box-content after:h-[4px] after:w-full after:rounded-sm after:bg-red-500;
   }
   .active {
-    @apply bg-secondary !text-white block;
+    @apply block bg-secondary !text-white;
   }
 }
 

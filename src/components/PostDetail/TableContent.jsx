@@ -18,15 +18,15 @@ const TableContent = ({ contents }) => {
     };
   }, []);
 
-  const contentTable = contents.map((text) => {
+  const contentTable = contents.map((text, index) => {
     if (text.type === "heading-two") {
       const link = text.id;
 
       {
         return (
-          <li>
+          <li key={index} className="flex flex-col">
             <Link
-              className="cursor-pointer px-2 font-normal hover:text-red-400"
+              className="cursor-pointer border-b px-2 py-1 font-normal hover:text-red-400"
               activeClass="active"
               spy={true}
               // offset={-70}

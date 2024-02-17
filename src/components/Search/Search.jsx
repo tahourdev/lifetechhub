@@ -25,9 +25,11 @@ const Search = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-
+    if (!searchQuery) return;
     router.push(`/search?query=${encodeURIComponent(searchQuery)}`);
   };
+
+  console.log(!searchQuery);
 
   return (
     <form
@@ -38,12 +40,16 @@ const Search = () => {
       <input
         className="hidden w-full bg-transparent pr-4 indent-2 outline-none placeholder:text-sm lg:block"
         type="text"
+        name="search"
         onChange={(e) => setSearchQuery(e.target.value)}
         placeholder="Search..."
       />
 
       {isMedium ? (
-        <button className=" absolute right-2 top-1/2 -translate-y-1/2">
+        <button
+          type="submit"
+          className=" absolute right-2 top-1/2 -translate-y-1/2"
+        >
           <MdSearch className="cursor-pointer text-slate-500" size={20} />
         </button>
       ) : (

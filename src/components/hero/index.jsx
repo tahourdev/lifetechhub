@@ -1,11 +1,9 @@
-// 'use client';
 import React from "react";
 import LeftSide from "./LeftSide";
 import RightSide from "./RightSide";
 import { getPosts } from "../../../services";
 
 export default async function Hero() {
-  // const [loading, setLoading] = useState(true);
   const featuredPosts = await getPosts();
 
   const firstPost = featuredPosts.length > 0 ? featuredPosts[0].node : null;

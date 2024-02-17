@@ -24,6 +24,10 @@ export const getPosts = async () => {
             categories {
               name
             }
+            content {
+              html
+              raw
+            }
           }
         }
       }
@@ -122,6 +126,7 @@ export const getRecommendedPosts = async (slug, categories) => {
         }
         content {
           html
+          raw
         }
       }
     }
@@ -131,12 +136,12 @@ export const getRecommendedPosts = async (slug, categories) => {
   return result.posts;
 };
 
-export const getPostsByCat = async (slug) => {
+export const getPostsByCat = async (slug, first, skip) => {
   const query = gql`
-    query getPostsByCat($slug: String) {
+    query getPostsByCat($slug: String, $first: Int, $skip: Int) {
       category(where: { slug: $slug }) {
         name
-        posts(orderBy: publishedAt_DESC) {
+        posts(orderBy: publishedAt_DESC, first: $first, skip: $skip) {
           title
           slug
           featuredImage {
@@ -157,14 +162,14 @@ export const getPostsByCat = async (slug) => {
       }
     }
   `;
-  const result = await request(graphqlAPI, query, { slug });
+  const result = await request(graphqlAPI, query, { slug, first, skip });
   return result.category;
 };
 
 export const getPostBySearch = async (title) => {
   const query = gql`
     query getPostBySearch($title: String) {
-      posts(where: { _search: $title }) {
+      posts(where: { _search: $title }, first: 6, orderBy: publishedAt_DESC) {
         title
         createdAt
         slug
@@ -184,5 +189,72 @@ export const getPostBySearch = async (title) => {
     }
   `;
   const result = await request(graphqlAPI, query, { title });
+
   return result.posts;
+};
+
+export const getCategoryTotalPosts = async (slug) => {
+  const query = gql`
+    query getCategoryTotalPosts($slug: String) {
+      category(where: { slug: $slug }) {
+        name
+        posts {
+          title
+          slug
+        }
+      }
+    }
+  `;
+  const result = await request(graphqlAPI, query, { slug });
+  return result.category;
+};
+
+export const getPostsByPagination = async (slug, first, skip) => {
+  const query = gql`
+    query getPostsByPagination($slug: String!, $first: Int!, $skip: Int) {
+      postsConnection(
+        first: $first
+        where: { categories_some: { slug: $slug } }
+        orderBy: publishedAt_DESC
+        skip: $skip
+      ) {
+        edges {
+          cursor
+          node {
+            categories {
+              name
+            }
+            title
+            slug
+            featuredImage {
+              url
+            }
+            excerption
+            createdAt
+            categories {
+              name
+            }
+            author {
+              name
+              photo {
+                url
+              }
+            }
+          }
+        }
+        pageInfo {
+          endCursor
+          hasNextPage
+          hasPreviousPage
+          pageSize
+          startCursor
+        }
+        aggregate {
+          count
+        }
+      }
+    }
+  `;
+  const result = await request(graphqlAPI, query, { slug, first, skip });
+  return result.postsConnection;
 };

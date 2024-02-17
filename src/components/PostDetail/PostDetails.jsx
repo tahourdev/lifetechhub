@@ -10,7 +10,7 @@ import RecommededPosts from "./RecommededPosts";
 import TableContent from "./TableContent";
 // import Zoom from 'react-medium-image-zoom';
 import "react-medium-image-zoom/dist/styles.css";
-import { generateIdFromTitle, windwoScroll } from "../utils";
+import { generateIdFromTitle } from "../utils";
 import AdsShowOne from "../Ads/AdsShowOne";
 
 export default async function PostDetails({ postDetails, slug }) {

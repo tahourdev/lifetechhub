@@ -50,10 +50,10 @@ const Categories = () => {
             ].map((cat, index) => (
               <li
                 key={index}
-                className="cursor-pointer snap-center whitespace-nowrap rounded-full p-2 text-sm font-normal text-white transition-all duration-300 ease-in-out hover:bg-red-400 md:text-base"
+                className="cursor-pointer snap-center whitespace-nowrap rounded-full text-sm font-normal text-white transition-all duration-300 ease-in-out hover:bg-red-400 md:text-base"
               >
                 <Link
-                  className="block px-6"
+                  className="block rounded-full px-6 py-2"
                   href={
                     cat === "Home"
                       ? "/"

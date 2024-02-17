@@ -1,48 +1,57 @@
-import React from 'react';
-import { products } from '@/constant/data';
-import Link from 'next/link';
-import Image from 'next/image';
-import moment from 'moment';
+import React from "react";
+import { products } from "@/constant/data";
+import Link from "next/link";
+import Image from "next/image";
+import moment from "moment";
+import readingTime from "reading-time";
 
 const LeftSide = ({ firstPost }) => {
+  const timeReading = readingTime(firstPost.content.html).text;
+  // console.log(firstPost.content);
   return (
-    <div className='lg:col-span-6 col-span-full transition-all duration-[.4s] ease'>
+    <div className="ease col-span-full transition-all duration-[.4s] lg:col-span-6">
       <Link href={`/articles/${firstPost?.slug}`}>
-        <div className='w-full sm:rounded-xl hover:hue-rotate-30 overflow-hidden transition-all duration-[.4s] ease'>
+        <div className="ease w-full overflow-hidden transition-all duration-[.4s] hover:hue-rotate-30 sm:rounded-xl">
           <img
-            className='bg-center aspect-[16/9] hover:scale-105 transition-all duration-300 ease object-cover bg-contain'
+            className="ease aspect-[16/9] bg-contain bg-center object-cover transition-all duration-300 hover:scale-105"
             src={firstPost?.featuredImage.url}
-            alt=''
+            alt=""
           />
         </div>
-        <div className='p-4 space-y-4'>
+        <div className="space-y-4 p-4">
           {firstPost?.categories.map((cat) => (
             <div
               key={cat.name}
-              className='max-w-fit border border-solid cursor-pointer border-green-400 rounded-lg px-3 py-1'>
-              <p className='md:text-base text-xs'>{cat.name}</p>
+              className="flex w-full cursor-pointer items-center justify-between"
+            >
+              <p className="rounded-lg border border-solid border-green-400 px-3 py-1 text-xs font-medium text-slate-600 md:text-sm">
+                {cat.name}
+              </p>
+              <p className="text-sm font-medium text-slate-500">
+                {timeReading}
+              </p>
             </div>
           ))}
-          <p className='lg:text-2xl hover:text-green-600 hover:underline decoration-green-600 text-base font-semibold text-slate-700 transition-all duration-100 ease'>
+          <p className="ease text-base font-semibold text-slate-700 decoration-green-600 transition-all duration-100 hover:text-green-600 hover:underline lg:text-2xl">
             {firstPost?.title}
           </p>
-          <p className='xl:text-sm 2xl:text-base text-slate-500 text-xs font-normal line-clamp-3 transition-all duration-[.4s] ease'>
+          <p className="ease line-clamp-3 text-xs font-normal text-slate-500 transition-all duration-[.4s] xl:text-sm 2xl:text-base">
             {firstPost?.excerption}
           </p>
           {firstPost && (
-            <div className='flex space-x-3 items-center'>
-              <div className='h-8 w-8 rounded-full overflow-hidden transition-all duration-[.4s] ease'>
+            <div className="flex items-center space-x-3">
+              <div className="ease h-8 w-8 overflow-hidden rounded-full transition-all duration-[.4s]">
                 <Image
                   width={582}
                   height={325}
-                  className='w-full object-cover'
+                  className="w-full object-cover"
                   src={firstPost?.author.photo.url}
-                  alt=''
+                  alt=""
                 />
               </div>
-              <div className='text-slate-500 font-medium text-xs'>
+              <div className="text-xs font-medium text-slate-500">
                 <p>{firstPost?.author.name}</p>
-                <time>{moment(firstPost.createdAt).format('MMM DD')}</time>
+                <time>{moment(firstPost.createdAt).format("MMM DD")}</time>
               </div>
             </div>
           )}

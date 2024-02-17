@@ -1,8 +1,11 @@
 import React from "react";
 import Link from "next/link";
 import moment from "moment";
+import readingTime from "reading-time";
 
 const RightSide = ({ nextThreePost }) => {
+  const timeReading = readingTime(nextThreePost.node.content.html).text;
+  // console.log(nextThreePost);
   return (
     <div className="grid grid-cols-12 gap-4 transition-all duration-300 ease-in-out xl:gap-6">
       <div className="ease col-span-6 place-self-start overflow-hidden transition-all duration-[.4s] sm:rounded-xl md:col-span-5 2xl:col-span-6">
@@ -16,12 +19,15 @@ const RightSide = ({ nextThreePost }) => {
       </div>
       <div className="ease col-span-6 space-y-3 pr-4 transition-all duration-[.4s] md:col-span-7 lg:pr-0 2xl:col-span-6">
         {nextThreePost?.node.categories.map((cat) => (
-          <p
-            key={cat.name}
-            className="max-w-fit rounded-lg border border-solid border-green-400 px-3 py-1 text-[10px] xl:text-xs"
-          >
-            {cat.name}
-          </p>
+          <div className="flex w-full cursor-pointer items-center justify-between">
+            <p
+              key={cat.name}
+              className="max-w-fit rounded-lg border border-solid border-green-400 px-3 py-1 text-[10px] xl:text-xs"
+            >
+              {cat.name}
+            </p>
+            <p className="text-xs font-normal text-slate-700">{timeReading}</p>
+          </div>
         ))}
         <Link href={`/articles/${nextThreePost.node.slug}`}>
           <p className="ease line-clamp-2 pt-3 text-xs font-semibold text-slate-700 decoration-green-600 transition-all duration-100 hover:text-green-600 hover:underline xl:text-lg">
