@@ -12,16 +12,18 @@ const LeftSide = ({ firstPost }) => {
     <div className="ease col-span-full transition-all duration-[.4s] lg:col-span-6">
       <Link href={`/articles/${firstPost?.slug}`}>
         <div className="ease w-full overflow-hidden transition-all duration-[.4s] hover:hue-rotate-30 sm:rounded-xl">
-          <img
-            className="ease aspect-[16/9] bg-contain bg-center object-cover transition-all duration-300 hover:scale-105"
+          <Image
+            width={1920}
+            height={1080}
+            className="ease aspect-[16/9] h-auto w-auto bg-contain bg-center object-cover transition-all duration-300 hover:scale-105"
             src={firstPost?.featuredImage.url}
             alt=""
           />
         </div>
         <div className="space-y-4 p-4">
-          {firstPost?.categories.map((cat) => (
+          {firstPost?.categories.map((cat, index) => (
             <div
-              key={cat.name}
+              key={index}
               className="flex w-full cursor-pointer items-center justify-between"
             >
               <p className="rounded-lg border border-solid border-green-400 px-3 py-1 text-xs font-medium text-slate-600 md:text-sm">
@@ -42,9 +44,9 @@ const LeftSide = ({ firstPost }) => {
             <div className="flex items-center space-x-3">
               <div className="ease h-8 w-8 overflow-hidden rounded-full transition-all duration-[.4s]">
                 <Image
-                  width={582}
-                  height={325}
-                  className="w-full object-cover"
+                  width={100}
+                  height={100}
+                  className="h-auto w-auto object-cover"
                   src={firstPost?.author.photo.url}
                   alt=""
                 />

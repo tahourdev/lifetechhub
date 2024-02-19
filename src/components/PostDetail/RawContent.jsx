@@ -18,18 +18,15 @@ function RawContent({ contents }) {
         } else if (child.type === "paragraph") {
           // Render paragraph tag
           return (
-            <p className="font-[400] text-slate-700" key={index}>
+            <div className="font-[400] text-slate-700" key={index}>
               {child.children.map((textNode, index) => (
-                <>
-                  <span
-                    className={textNode.bold ? "font-bold" : ""}
-                    key={index}
-                  >
+                <div key={index}>
+                  <span className={textNode.bold ? "font-bold" : ""}>
                     {textNode.text}
                   </span>
-                </>
+                </div>
               ))}
-            </p>
+            </div>
           );
         } else if (child.type === "bulleted-list") {
           return (

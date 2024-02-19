@@ -1,21 +1,25 @@
 import moment from "moment";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 const PostItem = ({ post }) => {
   return (
-    <article className="grid grid-cols-12 space-x-8">
+    <article className="grid grid-cols-12 space-x-4 md:space-x-8">
       <Link
         href={`/articles/${post.slug}`}
-        className="col-span-6 overflow-hidden rounded-lg 4xl:col-span-4"
+        className="col-span-5 place-self-start overflow-hidden transition-all duration-300 ease-in-out sm:rounded-lg md:col-span-6 4xl:col-span-4"
       >
-        <img
-          className="aspect-[3/2] cursor-pointer rounded-lg bg-cover bg-no-repeat object-cover transition-all duration-300 ease-in-out hover:scale-110 hover:hue-rotate-30"
+        <Image
+          width={300}
+          height={200}
+          quality={40}
+          className="aspect-[3/2] h-auto w-auto cursor-pointer bg-cover bg-no-repeat object-cover transition-all duration-300 ease-in-out hover:scale-110 hover:hue-rotate-30 sm:rounded-lg"
           src={post.featuredImage.url}
           alt=""
         />
       </Link>
-      <div className="col-span-6 flex flex-col justify-start gap-2 lg:gap-4 3xl:justify-center 4xl:col-span-8">
+      <div className="col-span-7 flex flex-col justify-start gap-2 transition-all duration-300 ease-in-out md:col-span-6 lg:gap-4 3xl:justify-center 4xl:col-span-8">
         {/* <p className='md:text-xs text-[10px] max-w-fit border border-solid cursor-pointer border-green-400 rounded-lg px-3 py-1'>
           {post.cat}
         </p> */}

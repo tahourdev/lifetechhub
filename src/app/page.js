@@ -1,5 +1,6 @@
 import { Hero } from "@/components";
 import AdsShow from "@/components/Ads/AdsShow";
+import AdsShowOne from "@/components/Ads/AdsShowOne";
 import { Cats } from "@/components/post/Cats";
 import LatestPosts from "@/components/post/LatestPosts";
 

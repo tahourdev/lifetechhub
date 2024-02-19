@@ -1,8 +1,6 @@
 import React, { Suspense } from "react";
 import Post from "@/components/post/Post";
-import { getPostsByPagination } from "../../../../services";
-// import LoadMore from "@/components/LoadMore/LoadMore";
-
+import { getPostsByCat, getPostsByPagination } from "../../../../services";
 import Link from "next/link";
 import Layout from "../layout";
 import Loading from "../loading";
@@ -10,9 +8,9 @@ import Loading from "../loading";
 export default async function CategoryPage({ params, searchParams }) {
   const paramId = params.id;
   const perPage = 6;
-  const totalCatPosts = await getPostsByPagination(paramId, perPage);
-  const totalPages = Math.ceil(totalCatPosts.aggregate.count / perPage);
-  let page = parseInt(searchParams.page, 10);
+  const postByCat = await getPostsByPagination(paramId, perPage);
+  const totalPages = Math.ceil(postByCat.aggregate.count / perPage);
+  let page = parseInt(searchParams.page);
 
   page = !page || page < 1 ? 1 : page;
 
@@ -65,7 +63,7 @@ export default async function CategoryPage({ params, searchParams }) {
         <div className="mt-8 flex w-full justify-center">
           <div className="flex gap-4 rounded-[10px] border-[1px] border-secondary px-3 py-2">
             {page === 1 ? (
-              <div className="opacity-60" aria-disabled="true ">
+              <div className="opacity-60" aria-disabled="true">
                 Previous
               </div>
             ) : (
@@ -75,13 +73,14 @@ export default async function CategoryPage({ params, searchParams }) {
             )}
 
             {pagesNumber.map((pageNumber, index) => (
-              <Link
-                href={`?page=${pageNumber}`}
-                key={index}
-                className={`${page === pageNumber ? "rounded-md bg-secondary px-2 text-slate-100" : ""}`}
-              >
-                {pageNumber}
-              </Link>
+              <div key={index}>
+                <Link
+                  href={`?page=${pageNumber}`}
+                  className={`${page === pageNumber ? "rounded-md bg-secondary px-2 text-slate-100" : ""}`}
+                >
+                  {pageNumber}
+                </Link>
+              </div>
             ))}
 
             {page === totalPages ? (
@@ -98,4 +97,33 @@ export default async function CategoryPage({ params, searchParams }) {
       </Suspense>
     </Layout>
   );
+}
+
+export async function generateMetadata({ params }) {
+  const catId = params.id;
+  const catPosts = await getPostsByCat(catId);
+  const catName = catPosts.name;
+  try {
+    if (!catPosts)
+      return {
+        title: "Not Found",
+        description: "This page you are looking for does not exist.",
+      };
+    return {
+      title: catName,
+      alternates: {
+        canonical: `https://www.lifetechhubs.com/categories/${catId}`,
+      },
+      robots: {
+        index: false,
+        follow: true,
+        nocache: true,
+      },
+    };
+  } catch (error) {
+    return {
+      title: "Not Found",
+      description: "This page you are looking for does not exist.",
+    };
+  }
 }

@@ -10,26 +10,14 @@ import { useRouter } from "next/navigation";
 
 const Search = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  // const [searchResults, setSearchResults] = useState([]);
-  const [posts, setPosts] = useState([]);
   const isMedium = useMedia("(min-width: 767px)");
   const router = useRouter();
-
-  const fetchPosts = async () => {
-    const articles = await getPosts();
-    setPosts(articles);
-  };
-  useEffect(() => {
-    fetchPosts();
-  }, []);
 
   const handleSearch = (e) => {
     e.preventDefault();
     if (!searchQuery) return;
     router.push(`/search?query=${encodeURIComponent(searchQuery)}`);
   };
-
-  console.log(!searchQuery);
 
   return (
     <form
@@ -48,12 +36,15 @@ const Search = () => {
       {isMedium ? (
         <button
           type="submit"
-          className=" absolute right-2 top-1/2 -translate-y-1/2"
+          className="absolute right-2 top-1/2 -translate-y-1/2"
         >
           <MdSearch className="cursor-pointer text-slate-500" size={20} />
         </button>
       ) : (
-        <Link href="/search">
+        <Link
+          href="/search"
+          className="inline-flex h-full cursor-pointer items-center justify-center"
+        >
           <MdSearch className={clsx(`text-slate-500`)} size={20} />
         </Link>
       )}

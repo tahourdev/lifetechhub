@@ -79,10 +79,10 @@ export default async function PostDetails({ postDetails, slug }) {
               </div>
 
               <Image
-                width={900}
+                width={1000}
                 height={400}
                 quality={100}
-                className="rounded-xl object-cover"
+                className="h-auto w-full rounded-xl object-cover"
                 src={featuredImage}
                 alt={postDetails.title}
               />

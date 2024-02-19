@@ -1,6 +1,15 @@
-import { request, gql } from "graphql-request";
+import { gql, GraphQLClient } from "graphql-request";
 
-const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
+export const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
+
+const graphQLClient = new GraphQLClient(graphqlAPI);
+
+// import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
+
+// const client = new ApolloClient({
+//   uri: graphqlAPI,
+//   cache: new InMemoryCache(),
+// });
 
 export const getPosts = async () => {
   const query = gql`
@@ -33,7 +42,7 @@ export const getPosts = async () => {
       }
     }
   `;
-  const result = await request(graphqlAPI, query);
+  const result = await graphQLClient.request(query);
   return result.postsConnection.edges;
 };
 
@@ -62,13 +71,13 @@ export const getCategories = async () => {
     }
   `;
 
-  const result = await request(graphqlAPI, query);
+  const result = await graphQLClient.request(query);
   return result.categories;
 };
 
 export const getSinglePostDetails = async (slug) => {
   const query = gql`
-    query getSinglePostDetails($slug: String) {
+    query getSinglePostDetails($slug: String!) {
       post(where: { slug: $slug }) {
         title
         slug
@@ -94,7 +103,7 @@ export const getSinglePostDetails = async (slug) => {
       }
     }
   `;
-  const result = await request(graphqlAPI, query, { slug });
+  const result = await graphQLClient.request(query, { slug });
   return result.post;
 };
 
@@ -132,7 +141,7 @@ export const getRecommendedPosts = async (slug, categories) => {
     }
   `;
 
-  const result = await request(graphqlAPI, query, { slug, categories }); // Provide the value for $slug
+  const result = await graphQLClient.request(query, { slug, categories }); // Provide the value for $slug
   return result.posts;
 };
 
@@ -162,7 +171,7 @@ export const getPostsByCat = async (slug, first, skip) => {
       }
     }
   `;
-  const result = await request(graphqlAPI, query, { slug, first, skip });
+  const result = await graphQLClient.request(query, { slug, first, skip });
   return result.category;
 };
 
@@ -188,7 +197,7 @@ export const getPostBySearch = async (title) => {
       }
     }
   `;
-  const result = await request(graphqlAPI, query, { title });
+  const result = await graphQLClient.request(query, { title });
 
   return result.posts;
 };
@@ -205,13 +214,13 @@ export const getCategoryTotalPosts = async (slug) => {
       }
     }
   `;
-  const result = await request(graphqlAPI, query, { slug });
+  const result = await graphQLClient.request(query, { slug });
   return result.category;
 };
 
 export const getPostsByPagination = async (slug, first, skip) => {
   const query = gql`
-    query getPostsByPagination($slug: String!, $first: Int!, $skip: Int) {
+    query getPostsByPagination($slug: String!, $first: Int, $skip: Int) {
       postsConnection(
         first: $first
         where: { categories_some: { slug: $slug } }
@@ -255,6 +264,6 @@ export const getPostsByPagination = async (slug, first, skip) => {
       }
     }
   `;
-  const result = await request(graphqlAPI, query, { slug, first, skip });
+  const result = await graphQLClient.request(query, { slug, first, skip });
   return result.postsConnection;
 };

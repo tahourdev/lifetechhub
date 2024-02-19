@@ -1,4 +1,5 @@
 import moment from "moment";
+import Image from "next/image";
 import Link from "next/link";
 import readingTime from "reading-time";
 
@@ -17,10 +18,12 @@ const Post = ({
   return (
     <div className="ease w-full transition-all duration-[.4s]">
       <div className="ease group overflow-hidden transition-all duration-[.4s]">
-        <div className="aspect-video overflow-hidden rounded-lg">
+        <div className="aspect-video overflow-hidden sm:rounded-lg">
           <Link href={`/articles/${slug}`}>
-            <img
-              className="h-full w-full cursor-pointer object-cover transition duration-300 ease-in-out group-hover:scale-110 group-hover:hue-rotate-30"
+            <Image
+              width={1800}
+              height={1000}
+              className=" h-auto w-full cursor-pointer object-cover transition duration-300 ease-in-out group-hover:scale-110 group-hover:hue-rotate-30"
               src={cover}
               alt="cover "
             />
@@ -42,7 +45,13 @@ const Post = ({
           <p className="line-clamp-3 text-sm text-slate-600">{desc}</p>
           <div className="flex items-center space-x-3 pt-3">
             <div className="ease h-8 w-8 overflow-hidden rounded-full transition-all duration-[.4s]">
-              <img className="w-full" src={author.photo.url} alt="" />
+              <Image
+                width={32}
+                height={32}
+                className="h-auto w-auto"
+                src={author.photo.url}
+                alt={author.name}
+              />
             </div>
             <div className="text-xs font-medium text-slate-500">
               <p className="">{author.name}</p>
