@@ -3,9 +3,6 @@ import clsx from "clsx";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import Search from "../Search/Search";
-import { getPostBytitle } from "../../../services";
-import { debounce } from "lodash";
-import SearchPosts from "../Search/SearchPosts";
 
 const Categories = () => {
   const [isSticky, setIsSticky] = useState(false);
