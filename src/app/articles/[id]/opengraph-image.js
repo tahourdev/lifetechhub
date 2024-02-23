@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 import { getSinglePostDetails } from "../../../../services";
 
 // Route segment config
-// export const runtime = "edge";
+export const runtime = "edge";
 
 // Image metadata
 export const alt = "About life tech hub";
@@ -16,9 +16,8 @@ export const contentType = "image/png";
 // Image generation
 export default async function Image({ params }) {
   const slug = params.id;
-  console.log(slug);
+
   const post = await getSinglePostDetails(slug);
-  console.log(post);
 
   return new ImageResponse(
     (
