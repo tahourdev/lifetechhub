@@ -27,7 +27,7 @@ const outfit = Outfit({
 export const metadata = {
   metadataBase: new URL("https://www.life-tech-hubs.vercel.app"),
   title: {
-    default: "Sdach Rean",
+    default: "Life Tech Hub",
     template: `%s  | Life Tech Hub`,
   },
   description:
