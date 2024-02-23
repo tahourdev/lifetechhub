@@ -103,6 +103,10 @@ export async function generateMetadata({ params }) {
   const catId = params.id;
   const catPosts = await getPostsByCat(catId);
   const catName = catPosts.name;
+  const catDesc = catPosts.posts.map((cat) =>
+    cat.categories.map((post) => post.description),
+  );
+
   try {
     if (!catPosts)
       return {
@@ -111,6 +115,7 @@ export async function generateMetadata({ params }) {
       };
     return {
       title: catName,
+      description: catDesc,
       alternates: {
         canonical: `https://www.lifetechhubs.com/categories/${catId}`,
       },

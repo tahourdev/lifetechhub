@@ -5,6 +5,8 @@
 * {
   scroll-behavior: smooth;
   user-select: #92b973;
+  padding: 0;
+  margin: 0;
 }
 
 .scrollbar-hide::-webkit-scrollbar {

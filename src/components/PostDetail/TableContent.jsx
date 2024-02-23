@@ -18,9 +18,9 @@ const TableContent = ({ contents }) => {
     };
   }, []);
 
-  const contentTable = contents.map((text, index) => {
+  const contentTable = contents?.map((text, index) => {
     if (text.type === "heading-two") {
-      const link = text.id;
+      // const link = text.id;
 
       {
         return (
@@ -31,7 +31,7 @@ const TableContent = ({ contents }) => {
               spy={true}
               // offset={-70}
               duration={500}
-              to={link}
+              to={text.id}
             >
               {text.children.map((headingText) => headingText.text)}
             </Link>
@@ -45,7 +45,7 @@ const TableContent = ({ contents }) => {
   return (
     <div
       className={`${
-        isSticky ? "top-14 opacity-100" : "top-32 opacity-0"
+        isSticky ? "top-4 opacity-100" : "top-32 opacity-0"
       } relative border-r-2 border-slate-300/50 transition-all duration-300 ease-linear`}
     >
       <ul className="prose prose-a:text-slate-600 prose-a:no-underline">

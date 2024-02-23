@@ -8,7 +8,7 @@ import { getSinglePostDetails } from "../../../../services";
 export const alt = "About life tech hub";
 export const size = {
   width: 1200,
-  height: 630,
+  height: 720,
 };
 
 export const contentType = "image/png";
@@ -24,6 +24,7 @@ export default async function Image({ params }) {
     (
       // ImageResponse JSX element
       <div
+        tw="relative"
         style={{
           fontSize: 128,
           background: "white",
@@ -34,7 +35,11 @@ export default async function Image({ params }) {
           justifyContent: "center",
         }}
       >
-        {post.title}
+        <img
+          tw="w-full h-full object-contain absolute right-0 left-0 bottom-0 top-0 brightness-125 contrast-125"
+          src={post.featuredImage.url}
+          alt=""
+        />
       </div>
     ),
     // ImageResponse options

@@ -37,26 +37,20 @@ const Header = () => {
         </Link>
         <nav className="relative pb-4 pt-2">
           <ul className="hidden items-center gap-8 font-outfit text-sm font-medium text-slate-600 3xl:flex">
-            {[
-              "Privacy",
-              "Term of Use",
-              "Disclaimer",
-              "Sitemap",
-              "About",
-              "Contact",
-            ].map((menu, index) => (
-              <li onClick={() => handleClickMenu(index)} key={index}>
-                <Link
-                  className={clsx(
-                    `relative block py-4 transition-all duration-300 ease-in`,
-                    active === index && "desk_nav-active",
-                  )}
-                  href={`/${menu.toLowerCase().replace(/\s+/g, "-")}`}
-                >
-                  {menu}
-                </Link>
-              </li>
-            ))}
+            {["Privacy Policy", "Term And Condition", "About", "Contact"].map(
+              (menu, index) => (
+                <li onClick={() => handleClickMenu(index)} key={index}>
+                  <Link
+                    className={clsx(
+                      `relative block py-4 transition-all duration-300 ease-in`,
+                    )}
+                    href={`/${menu.toLowerCase().replace(/\s+/g, "-")}`}
+                  >
+                    {menu}
+                  </Link>
+                </li>
+              ),
+            )}
           </ul>
           <div
             className="flex cursor-pointer px-2 py-4 3xl:hidden"
@@ -77,33 +71,27 @@ const Header = () => {
             !toggle && "-translate-x-full",
           )}
         >
-          {[
-            "Privacy",
-            "Term of Use",
-            "Disclaimer",
-            "Resources",
-            "Sitemap",
-            "About",
-            "Contact",
-          ].map((menu, index) => (
-            <li
-              key={index}
-              className={clsx(
-                `relative w-full cursor-pointer border-b-[1px] border-gray-400/20`,
-              )}
-            >
-              <Link
+          {["Privacy Policy", "Term And Condition", "About", "Contact"].map(
+            (menu, index) => (
+              <li
+                key={index}
                 className={clsx(
-                  `block py-4 pl-6 hover:bg-sky-50`,
-                  active === index && "mobile_nav-active bg-blue-100",
+                  `relative w-full cursor-pointer border-b-[1px] border-gray-400/20`,
                 )}
-                onClick={() => handleClickMenu(index)}
-                href={`/${menu.toLowerCase().replace(/\s+/g, "-")}`}
               >
-                {menu}
-              </Link>
-            </li>
-          ))}
+                <Link
+                  className={clsx(
+                    `block py-4 pl-6 hover:bg-sky-50`,
+                    active === index && "mobile_nav-active bg-blue-100",
+                  )}
+                  onClick={() => handleClickMenu(index)}
+                  href={`/${menu.toLowerCase().replace(/\s+/g, "-")}`}
+                >
+                  {menu}
+                </Link>
+              </li>
+            ),
+          )}
         </ul>
       </div>
       <Divided />

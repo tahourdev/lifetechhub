@@ -10,8 +10,9 @@ import RecommededPosts from "./RecommededPosts";
 import TableContent from "./TableContent";
 // import Zoom from 'react-medium-image-zoom';
 import "react-medium-image-zoom/dist/styles.css";
-import { generateIdFromTitle } from "../utils";
+
 import AdsShowOne from "../Ads/AdsShowOne";
+import { generateIdFromTitle } from "../utils/generateIdFromTitle";
 
 export default async function PostDetails({ postDetails, slug }) {
   const rawContent = postDetails.content.raw.children;
@@ -71,7 +72,7 @@ export default async function PostDetails({ postDetails, slug }) {
               </div>
               <Socials />
             </div>
-            <article className="prose prose-lg">
+            <article className="prose prose-base mb-4">
               {/* Header text */}
               <div>
                 <h3 className="prose-2xl mb-4 text-center">{header}</h3>

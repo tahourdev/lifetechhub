@@ -14,7 +14,7 @@ const graphQLClient = new GraphQLClient(graphqlAPI);
 export const getPosts = async () => {
   const query = gql`
     query getPosts {
-      postsConnection(orderBy: publishedAt_DESC) {
+      postsConnection(orderBy: publishedAt_DESC, first: 50) {
         edges {
           node {
             title
@@ -160,6 +160,7 @@ export const getPostsByCat = async (slug, first, skip) => {
           createdAt
           categories {
             name
+            description
           }
           author {
             name
@@ -266,4 +267,21 @@ export const getPostsByPagination = async (slug, first, skip) => {
   `;
   const result = await graphQLClient.request(query, { slug, first, skip });
   return result.postsConnection;
+};
+
+export const getPage = async (slug) => {
+  const query = gql`
+    query getPage($slug: String!) {
+      page(where: { slug: $slug }) {
+        title
+        slug
+        content {
+          html
+          raw
+        }
+      }
+    }
+  `;
+  const result = await graphQLClient.request(query, { slug });
+  return result.page;
 };
