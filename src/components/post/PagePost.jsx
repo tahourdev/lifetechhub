@@ -10,7 +10,7 @@ const PagePost = ({ data }) => {
               <p key={index}>
                 {element.children.map((child, childIndex) => {
                   if (child.bold) {
-                    return <b>{child.text}</b>;
+                    return <b key={childIndex}>{child.text}</b>;
                   }
                   if (child.type === "link") {
                     return (
@@ -52,7 +52,7 @@ const PagePost = ({ data }) => {
                                 <React.Fragment key={listItemChildIndex}>
                                   {listItemChild.children.map((item, index) => {
                                     if (item.bold) {
-                                      return <b>{item.text}</b>;
+                                      return <b key={index}>{item.text}</b>;
                                     } else if (item.href) {
                                       return (
                                         <React.Fragment key={index}>

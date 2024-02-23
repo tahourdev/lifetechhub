@@ -136,7 +136,7 @@ function RawContent({ contents }) {
       {contents.map((child, index) => {
         if (child.type === "heading-one") {
           return (
-            <h1 className="text-3xl font-medium text-slate-800">
+            <h1 key={index} className="text-3xl font-medium text-slate-800">
               {child.children[0].text}
             </h1>
           );
@@ -162,7 +162,13 @@ function RawContent({ contents }) {
           return renderBulletedList(child, index);
         } else if (child.type === "image") {
           return (
-            <img className="h-full w-full rounded-md" src={child.src} alt="" />
+            <React.Fragment key={index}>
+              <img
+                className="h-full w-full rounded-md"
+                src={child.src}
+                alt=""
+              />
+            </React.Fragment>
           );
         } else if (child.type === "block-quote") {
           return renderBlockQuote(child, index);
