@@ -3,7 +3,7 @@ import React from "react";
 
 const AdsShowOne = () => {
   return (
-    <div className="3xl:h-fulll mx-auto hidden max-w-md 3xl:block">
+    <div className="">
       <div className="overflow-hidden rounded-md">
         <Image
           width={300}

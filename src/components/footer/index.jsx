@@ -14,7 +14,7 @@ const Footer = () => {
           <div className="md:col-span-full xl:col-span-4">
             <FooterLogo />
           </div>
-          <div className="flex md:col-span-9 md:justify-between md:gap-4 xl:col-span-5">
+          <div className="flex flex-col gap-y-6 xs:flex-row md:col-span-9 md:justify-between md:gap-4 xl:col-span-5">
             <FooterItems
               isMenu={true}
               title="About"
