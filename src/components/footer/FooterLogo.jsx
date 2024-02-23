@@ -10,6 +10,7 @@ export default function FooterLogo() {
         className="h-auto w-auto"
         src="/logo.png"
         alt="Logo"
+        priority
         quality={100}
       />
       <p className="prose prose-sm mt-6 text-slate-300 dark:prose-invert">

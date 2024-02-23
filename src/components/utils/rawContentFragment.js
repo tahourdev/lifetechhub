@@ -154,12 +154,13 @@ export default function getRawContentFragment(index, text, obj, type) {
 
     case "image":
       return (
-        <img
+        <Image
           key={index}
           alt={obj.title}
           height={obj.height}
           width={obj.width}
           src={obj.src}
+          priority
         />
       );
 

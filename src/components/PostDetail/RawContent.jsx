@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import Image from "next/image";
 import React from "react";
 
 function RawContent({ contents }) {
@@ -163,7 +164,10 @@ function RawContent({ contents }) {
         } else if (child.type === "image") {
           return (
             <React.Fragment key={index}>
-              <img
+              <Image
+                priority
+                width={500}
+                height={500}
                 className="h-full w-full rounded-md"
                 src={child.src}
                 alt=""

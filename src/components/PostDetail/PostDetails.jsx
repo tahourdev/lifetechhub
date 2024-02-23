@@ -83,6 +83,7 @@ export default async function PostDetails({ postDetails, slug }) {
                 width={570}
                 height={370}
                 quality={60}
+                priority
                 className="h-auto w-full rounded-xl object-cover"
                 src={featuredImage}
                 alt={postDetails.title}

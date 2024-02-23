@@ -9,6 +9,7 @@ const Logo = () => {
       className="h-auto w-auto"
       src="/logo.png"
       alt="logo"
+      priority
     />
   );
 };

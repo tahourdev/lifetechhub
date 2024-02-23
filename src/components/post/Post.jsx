@@ -21,8 +21,9 @@ const Post = ({
         <div className="aspect-video overflow-hidden sm:rounded-lg">
           <Link href={`/articles/${slug}`}>
             <Image
-              width={1800}
-              height={1000}
+              width={500}
+              height={500}
+              priority
               className=" h-auto w-full cursor-pointer object-cover transition duration-300 ease-in-out group-hover:scale-110 group-hover:hue-rotate-30"
               src={cover}
               alt="cover "
@@ -49,6 +50,7 @@ const Post = ({
                 width={32}
                 height={32}
                 className="h-auto w-auto"
+                priority
                 src={author.photo.url}
                 alt={author.name}
               />
