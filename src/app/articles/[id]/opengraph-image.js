@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 import { getSinglePostDetails } from "../../../../services";
 
 // Route segment config
-export const runtime = "edge";
+// export const runtime = "edge";
 
 // Image metadata
 export const alt = "About life tech hub";
