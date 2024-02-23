@@ -80,9 +80,9 @@ export default async function PostDetails({ postDetails, slug }) {
               </div>
 
               <Image
-                width={1000}
-                height={400}
-                quality={100}
+                width={570}
+                height={370}
+                quality={60}
                 className="h-auto w-full rounded-xl object-cover"
                 src={featuredImage}
                 alt={postDetails.title}

@@ -12,7 +12,7 @@ export default function FooterLogo() {
         alt="Logo"
         quality={100}
       />
-      <p className="prose prose-sm mt-6 dark:prose-invert">
+      <p className="prose prose-sm mt-6 text-slate-300 dark:prose-invert">
         Welcome to Life Tech Hub – your ultimate destination for tech updates,
         health insights, travel adventures, how-to guides, and cultural
         highlights. Explore a hub of diverse content that enriches your life
