@@ -7,6 +7,7 @@ import Categories from "@/components/header/Categories";
 import NextTopLoader from "nextjs-toploader";
 import Head from "next/head";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Main, NextScript } from "next/document";
 
 const ibmplexsans = IBM_Plex_Sans({
   subsets: ["latin"],
@@ -69,6 +70,21 @@ export default function RootLayout({ children }) {
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
+
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-HQESLWFR6B"
+        ></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-HQESLWFR6B');
+              `,
+          }}
+        />
       </Head>
       <body
         className={clsx(
@@ -90,6 +106,9 @@ export default function RootLayout({ children }) {
         {children}
         <Footer />
         <SpeedInsights />
+
+        <Main />
+        <NextScript />
       </body>
     </html>
   );
