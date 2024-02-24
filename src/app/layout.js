@@ -7,6 +7,7 @@ import Categories from "@/components/header/Categories";
 import NextTopLoader from "nextjs-toploader";
 import Head from "next/head";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 
 const ibmplexsans = IBM_Plex_Sans({
   subsets: ["latin"],
@@ -69,22 +70,6 @@ export default function RootLayout({ children }) {
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-
-        <script
-          async
-          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
-        ></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-            window.dataLayer = window.dataLayer || []; function gtag()
-          {dataLayer.push(arguments)}
-          gtag('js', new Date()); gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
-            page_path: window.location.pathnam,
-          });
-            `,
-          }}
-        />
       </Head>
       <body
         className={clsx(
@@ -106,6 +91,8 @@ export default function RootLayout({ children }) {
         {children}
         <Footer />
         <SpeedInsights />
+        <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS} />
+        <GoogleAnalytics />
       </body>
     </html>
   );

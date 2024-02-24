@@ -3,6 +3,7 @@ import AdsShow from "@/components/Ads/AdsShow";
 import AdsShowOne from "@/components/Ads/AdsShowOne";
 import { Cats } from "@/components/post/Cats";
 import LatestPosts from "@/components/post/LatestPosts";
+import { GoogleTagManager } from "@next/third-parties/google";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
         </div>
         <AdsShow />
       </div>
+      <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS} />
     </main>
   );
 }
