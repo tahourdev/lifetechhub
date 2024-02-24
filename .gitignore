@@ -23,6 +23,7 @@
 src/components/utils/sortArticles.js
 src/components/hooks
 src/components/constant
+src/constant
 
 # misc
 .DS_Store
