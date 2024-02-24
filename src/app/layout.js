@@ -6,6 +6,7 @@ import clsx from "clsx";
 import Categories from "@/components/header/Categories";
 import NextTopLoader from "nextjs-toploader";
 import Head from "next/head";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const ibmplexsans = IBM_Plex_Sans({
   subsets: ["latin"],
@@ -88,6 +89,7 @@ export default function RootLayout({ children }) {
         <Categories />
         {children}
         <Footer />
+        <SpeedInsights />
       </body>
     </html>
   );
