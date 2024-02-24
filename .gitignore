@@ -20,8 +20,9 @@
 /build
 
 # src
-src/components/pagination
-src/components/categoryPosts
+src/components/utils/sortArticles.js
+src/components/hooks
+src/components/constant
 
 # misc
 .DS_Store
