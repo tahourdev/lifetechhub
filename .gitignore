@@ -21,7 +21,6 @@
 
 # src
 src/components/utils/sortArticles.js
-src/components/hooks
 src/constant
 
 # misc
