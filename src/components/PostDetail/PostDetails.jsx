@@ -75,7 +75,7 @@ export default async function PostDetails({ postDetails, slug }) {
             <article className="prose mb-4">
               {/* Header text */}
               <div>
-                <h3 className="prose-2xl mb-4 text-center">{header}</h3>
+                <h3 className="mb-4 text-center text-3xl">{header}</h3>
                 <div className="border-b-2" />
               </div>
 

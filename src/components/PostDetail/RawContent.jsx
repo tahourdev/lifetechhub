@@ -6,15 +6,14 @@ function RawContent({ contents }) {
   const renderLink = (child, index) => {
     return (
       <a
-        className={clsx(
-          `font-normal text-blue-700 no-underline hover:text-blue-500`,
-        )}
+        className={clsx(`font-normal text-blue-700 hover:text-blue-500`)}
         key={index}
         href={child.href}
         target="_blank"
         rel={child.rel}
       >
         {child.children.map((linkChild, linkChildIndex) => {
+          console.log(linkChild.text);
           return renderStyledText(linkChild, linkChildIndex);
         })}
       </a>
@@ -62,7 +61,9 @@ function RawContent({ contents }) {
   const renderParagraph = (child, index) => (
     <div key={index}>
       {child.children.map((paragraphChild, childIndex) => {
+        console.log(paragraphChild.text);
         if (paragraphChild.type === "link") {
+          console.log(paragraphChild);
           return renderLink(paragraphChild, childIndex);
         } else if (
           paragraphChild.bold ||
