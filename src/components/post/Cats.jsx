@@ -1,23 +1,34 @@
-// 'use client';
+"use client";
 import React from "react";
 import PostByCat from "./PostByCat";
 import { getCategories } from "../../../services";
 import SectionPost from "./SectionPost";
+import Link from "next/link";
+import { useQuery } from "@tanstack/react-query";
+import ContentLoading from "../Loading/ContentLoading";
 
-export const Cats = async () => {
-  const catPosts = await getCategories();
+export const Cats = () => {
+  // const catPosts = await getCategories();
+  const { data, isLoading } = useQuery({
+    queryKey: ["cat"],
+    queryFn: () => getCategories(),
+  });
+
+  if (!data) {
+    return <ContentLoading />;
+  }
 
   return (
     <>
-      {catPosts.map((post, index) => (
+      {data.map((cat, index) => (
         <div key={index} className="w-full">
           <SectionPost
-            link={post.slug}
-            title={post.name}
+            link={cat.slug}
+            title={cat.name}
             more="See All"
             see={true}
           />
-          <PostByCat posts={post.posts} />
+          <PostByCat posts={cat.posts} />
         </div>
       ))}
     </>
