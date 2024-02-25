@@ -8,8 +8,6 @@ import RawContent from "./RawContent";
 // import HtmlContent from './HtmlContent';
 import RecommededPosts from "./RecommededPosts";
 import TableContent from "./TableContent";
-// import Zoom from 'react-medium-image-zoom';
-import "react-medium-image-zoom/dist/styles.css";
 
 import AdsShowOne from "../Ads/AdsShowOne";
 import { generateIdFromTitle } from "../utils/generateIdFromTitle";
