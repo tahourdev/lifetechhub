@@ -27,7 +27,7 @@ const outfit = Outfit({
 });
 
 export const metadata = {
-  metadataBase: new URL("https://life-tech-hubs.vercel.app"),
+  metadataBase: new URL("https://lifetechhub.vercel.app"),
   title: {
     default: "Life Tech Hubs",
     template: `%s  | Life Tech Hubs`,
@@ -36,7 +36,7 @@ export const metadata = {
     "Your ultimate destination for tech updates, health insights, travel adventures, how-to guides, and cultural highlights. Explore a hub of diverse content that enriches your life with knowledge and entertainment.",
   keywords: "technology, health, travel, guides, culture, lifestyle",
   author: "Life Tech Hubs",
-  siteUrl: "https://life-tech-hubs.vercel.app",
+  siteUrl: "https://lifetechhub.vercel.app/",
   // image: "https://www.lifetechhubs.com/cover-image.jpg",
   verification: {
     google: "google-site-verification=123123123",

@@ -117,7 +117,7 @@ export async function generateMetadata({ params }) {
       title: catName,
       description: catDesc,
       alternates: {
-        canonical: `https://www.lifetechhubs.com/categories/${catId}`,
+        canonical: `/categories/${catId}`,
       },
       robots: {
         index: false,

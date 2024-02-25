@@ -1,7 +1,7 @@
 import { getCategories, getPosts } from "../../services";
 
 export default async function sitemap() {
-  const baseUrl = "https://life-tech-hubs.vercel.app/";
+  const baseUrl = "https://lifetechhub.vercel.app";
   // get all posts from cms
   const posts = await getPosts();
   const postsUrls =
