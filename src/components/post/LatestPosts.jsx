@@ -7,18 +7,18 @@ import readingTime from "reading-time";
 import { useQuery } from "@tanstack/react-query";
 import ContentLoading from "../Loading/ContentLoading";
 
-const LatestPosts = () => {
-  // const latestPosts = await getPosts();
+const LatestPosts = async () => {
+  const latestPosts = await getLatesPosts();
 
-  const { data, isLoading } = useQuery({
-    queryKey: ["post"],
-    queryFn: () => getLatesPosts(),
-  });
+  // const { data, isLoading } = useQuery({
+  //   queryKey: ["post"],
+  //   queryFn: () => getLatesPosts(),
+  // });
 
-  if (!data && isLoading) {
-    return <ContentLoading />;
-  }
-  const posts = data.slice(4, 10);
+  // if (!data && isLoading) {
+  //   return <ContentLoading />;
+  // }
+  const posts = latestPosts.slice(4, 10);
 
   return (
     <div className="w-full">

@@ -15,7 +15,7 @@ const PostItem = ({ post }) => {
           height={200}
           quality={40}
           priority
-          className="aspect-[3/2] h-auto w-auto cursor-pointer bg-cover bg-no-repeat object-cover transition-all duration-300 ease-in-out hover:scale-110 hover:hue-rotate-30 sm:rounded-lg"
+          className="aspect-[3/2] h-auto w-auto cursor-pointer transition-all duration-300 ease-in-out hover:scale-110 hover:hue-rotate-30 sm:rounded-lg"
           src={post.featuredImage.url}
           alt=""
         />
