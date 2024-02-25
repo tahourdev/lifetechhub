@@ -13,7 +13,6 @@ function RawContent({ contents }) {
         rel={child.rel}
       >
         {child.children.map((linkChild, linkChildIndex) => {
-          console.log(linkChild.text);
           return renderStyledText(linkChild, linkChildIndex);
         })}
       </a>
@@ -23,7 +22,7 @@ function RawContent({ contents }) {
   const renderStyledText = (child, index) => {
     if (child.underline && child.bold && child.italic) {
       return (
-        <b key={index}>
+        <b className="!font-medium !text-[#34589f]" key={index}>
           <i>
             <u>{child.text}</u>
           </i>
@@ -31,13 +30,13 @@ function RawContent({ contents }) {
       );
     } else if (child.bold && child.underline) {
       return (
-        <b key={index}>
+        <b className="!font-medium !text-[#2a56ad]" key={index}>
           <u>{child.text}</u>
         </b>
       );
     } else if (child.bold && child.italic) {
       return (
-        <b key={index}>
+        <b className="!font-medium !text-[#3e598f]" key={index}>
           <i>{child.text}</i>
         </b>
       );
@@ -50,7 +49,11 @@ function RawContent({ contents }) {
     } else if (child.underline) {
       return <u key={index}>{child.text}</u>;
     } else if (child.bold) {
-      return <b key={index}>{child.text}</b>;
+      return (
+        <b className="!font-medium !text-[#3e598f]" key={index}>
+          {child.text}
+        </b>
+      );
     } else if (child.italic) {
       return <em key={index}>{child.text}</em>;
     }
@@ -61,9 +64,7 @@ function RawContent({ contents }) {
   const renderParagraph = (child, index) => (
     <div key={index}>
       {child.children.map((paragraphChild, childIndex) => {
-        console.log(paragraphChild.text);
         if (paragraphChild.type === "link") {
-          console.log(paragraphChild);
           return renderLink(paragraphChild, childIndex);
         } else if (
           paragraphChild.bold ||
