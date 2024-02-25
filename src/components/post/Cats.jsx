@@ -1,31 +1,33 @@
-// 'use client';
+"use client";
 import React from "react";
 import PostByCat from "./PostByCat";
 import { getCategories } from "../../../services";
 import SectionPost from "./SectionPost";
-import Link from "next/link";
+import { useQuery } from "@tanstack/react-query";
+import ContentLoading from "../Loading/ContentLoading";
 
-export const Cats = async () => {
-  // const [catPosts, setCatPosts] = useState([]);
-  // useEffect(() => {
-  //   getCategories()
-  //     .then((newCatPosts) => setCatPosts(newCatPosts))
-  //     .catch((error) => console.log('Fetching is in trouble', error));
-  // }, []);
+export const Cats = () => {
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["cat"],
+    queryFn: () => getCategories(),
+  });
 
-  const catPosts = await getCategories();
+  if (!data) {
+    return <ContentLoading />;
+  }
 
   return (
     <>
-      {catPosts.map((post, index) => (
-        <div key={index} className="w-full">
+      {data?.map((cat, index) => (
+        <div key={index}>
           <SectionPost
-            link={post.slug}
-            title={post.name}
+            link={cat.slug}
+            title={cat.name}
             more="See All"
             see={true}
           />
-          <PostByCat posts={post.posts} />
+
+          <PostByCat posts={cat.posts} />
         </div>
       ))}
     </>

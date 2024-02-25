@@ -1,13 +1,13 @@
 import React from "react";
 import LeftSide from "./LeftSide";
 import RightSide from "./RightSide";
-import { getPosts } from "../../../services";
+import { getHeroPosts, getPosts } from "../../../services";
 
 export default async function Hero() {
-  const featuredPosts = await getPosts();
+  const heroPost = await getHeroPosts();
 
-  const firstPost = featuredPosts.length > 0 ? featuredPosts[0].node : null;
-  const nextThreePosts = featuredPosts.slice(1, 4);
+  const firstPost = heroPost.length > 0 ? heroPost[0].node : null;
+  const nextThreePosts = heroPost.slice(1, 4);
 
   return (
     <div className="my-10 grid grid-cols-12 place-items-start space-y-8 transition-all duration-[.4s] ease-in-out md:gap-8 md:space-y-0">

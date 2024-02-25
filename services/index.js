@@ -11,10 +11,11 @@ const graphQLClient = new GraphQLClient(graphqlAPI);
 //   cache: new InMemoryCache(),
 // });
 
+//Get All Posts
 export const getPosts = async () => {
   const query = gql`
     query getPosts {
-      postsConnection(orderBy: publishedAt_DESC, first: 50) {
+      postsConnection(orderBy: publishedAt_DESC, first: 100) {
         edges {
           node {
             title
@@ -46,6 +47,79 @@ export const getPosts = async () => {
   return result.postsConnection.edges;
 };
 
+//Get Hero Posts
+export const getHeroPosts = async () => {
+  const query = gql`
+    query getHeroPosts {
+      postsConnection(orderBy: publishedAt_DESC, first: 4) {
+        edges {
+          node {
+            title
+            slug
+            excerption
+            createdAt
+            featuredImage {
+              url
+            }
+            author {
+              name
+              photo {
+                url
+              }
+            }
+            categories {
+              name
+            }
+            content {
+              html
+              raw
+            }
+          }
+        }
+      }
+    }
+  `;
+  const result = await graphQLClient.request(query);
+  return result.postsConnection.edges;
+};
+
+//Get Latest Posts
+export const getLatesPosts = async () => {
+  const query = gql`
+    query getLatesPosts {
+      postsConnection(orderBy: publishedAt_DESC, first: 10) {
+        edges {
+          node {
+            title
+            slug
+            excerption
+            createdAt
+            featuredImage {
+              url
+            }
+            author {
+              name
+              photo {
+                url
+              }
+            }
+            categories {
+              name
+            }
+            content {
+              html
+              raw
+            }
+          }
+        }
+      }
+    }
+  `;
+  const result = await graphQLClient.request(query);
+  return result.postsConnection.edges;
+};
+
+//Get Categories Posts
 export const getCategories = async () => {
   const query = gql`
     query getCategories {
@@ -75,6 +149,7 @@ export const getCategories = async () => {
   return result.categories;
 };
 
+//Get Single Post
 export const getSinglePostDetails = async (slug) => {
   const query = gql`
     query getSinglePostDetails($slug: String!) {
@@ -107,6 +182,7 @@ export const getSinglePostDetails = async (slug) => {
   return result.post;
 };
 
+//Get Recommend Posts
 export const getRecommendedPosts = async (slug, categories) => {
   const query = gql`
     query getRecommendedPosts($slug: String!, $categories: [String]) {
@@ -145,6 +221,7 @@ export const getRecommendedPosts = async (slug, categories) => {
   return result.posts;
 };
 
+//Get Posts by each categories
 export const getPostsByCat = async (slug, first, skip) => {
   const query = gql`
     query getPostsByCat($slug: String, $first: Int, $skip: Int) {
@@ -176,6 +253,7 @@ export const getPostsByCat = async (slug, first, skip) => {
   return result.category;
 };
 
+// Get Post By Search
 export const getPostBySearch = async (title) => {
   const query = gql`
     query getPostBySearch($title: String) {
@@ -203,6 +281,7 @@ export const getPostBySearch = async (title) => {
   return result.posts;
 };
 
+//Get Total Posts for each categories
 export const getCategoryTotalPosts = async (slug) => {
   const query = gql`
     query getCategoryTotalPosts($slug: String) {
@@ -219,6 +298,7 @@ export const getCategoryTotalPosts = async (slug) => {
   return result.category;
 };
 
+// Get Pagination Posts
 export const getPostsByPagination = async (slug, first, skip) => {
   const query = gql`
     query getPostsByPagination($slug: String!, $first: Int, $skip: Int) {
@@ -269,6 +349,7 @@ export const getPostsByPagination = async (slug, first, skip) => {
   return result.postsConnection;
 };
 
+// Get Pages
 export const getPage = async (slug) => {
   const query = gql`
     query getPage($slug: String!) {

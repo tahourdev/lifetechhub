@@ -1,13 +1,24 @@
+"use client";
 import React from "react";
 import Post from "./Post";
 import SectionPost from "./SectionPost";
-import { getPosts } from "../../../services";
+import { getLatesPosts, getPosts } from "../../../services";
 import readingTime from "reading-time";
+import { useQuery } from "@tanstack/react-query";
+import ContentLoading from "../Loading/ContentLoading";
 
-const LatestPosts = async () => {
-  const latestPosts = await getPosts();
-  const posts = latestPosts.slice(4, 10);
-  // console.log(latestPosts.map((content) => content.node.content));
+const LatestPosts = () => {
+  // const latestPosts = await getPosts();
+
+  const { data, isLoading } = useQuery({
+    queryKey: ["post"],
+    queryFn: () => getLatesPosts(),
+  });
+
+  if (!data && isLoading) {
+    return <ContentLoading />;
+  }
+  const posts = data.slice(4, 10);
 
   return (
     <div className="w-full">

@@ -8,6 +8,7 @@ import NextTopLoader from "nextjs-toploader";
 import Head from "next/head";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
+import ReactQueryProvider from "./ReactQueryProvider";
 
 const ibmplexsans = IBM_Plex_Sans({
   subsets: ["latin"],
@@ -45,55 +46,57 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <Head>
-        <title>{metadata.title}</title>
-        <meta name="description" content={metadata.description} />
-        <meta name="keywords" content={metadata.keywords} />
-        <meta name="author" content={metadata.author} />
+    <ReactQueryProvider>
+      <html lang="en">
+        <Head>
+          <title>{metadata.title}</title>
+          <meta name="description" content={metadata.description} />
+          <meta name="keywords" content={metadata.keywords} />
+          <meta name="author" content={metadata.author} />
 
-        {/* Open Graph tags */}
-        <meta property="og:title" content={metadata.title} />
-        <meta property="og:description" content={metadata.description} />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content={metadata.siteUrl} />
-        <meta property="og:image" content={metadata.image} />
+          {/* Open Graph tags */}
+          <meta property="og:title" content={metadata.title} />
+          <meta property="og:description" content={metadata.description} />
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content={metadata.siteUrl} />
+          <meta property="og:image" content={metadata.image} />
 
-        {/* Twitter Card tags */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@LifeTechHubs" />
-        <meta name="twitter:title" content={metadata.title} />
-        <meta name="twitter:description" content={metadata.description} />
-        <meta name="twitter:image" content={metadata.image} />
-        <meta property="og:image" content="<generated>" />
-        <meta property="og:image:alt" content="About life tech hub" />
-        <meta property="og:image:type" content="image/png" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-      </Head>
-      <body
-        className={clsx(
-          ibmplexsans.className,
-          // inter.className,
-          // outfit.className,
-          "w-full overflow-hidden bg-primary selection:bg-secondary selection:text-primary",
-        )}
-      >
-        <NextTopLoader
-          showSpinner={true}
-          height={5}
-          color="#27AE60"
-          easing="cubic-bezier(0.53,0.21,0,1)"
-        />
-        <Header />
+          {/* Twitter Card tags */}
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:site" content="@LifeTechHubs" />
+          <meta name="twitter:title" content={metadata.title} />
+          <meta name="twitter:description" content={metadata.description} />
+          <meta name="twitter:image" content={metadata.image} />
+          <meta property="og:image" content="<generated>" />
+          <meta property="og:image:alt" content="About life tech hub" />
+          <meta property="og:image:type" content="image/png" />
+          <meta property="og:image:width" content="1200" />
+          <meta property="og:image:height" content="630" />
+        </Head>
+        <body
+          className={clsx(
+            ibmplexsans.className,
+            // inter.className,
+            // outfit.className,
+            "w-full overflow-hidden bg-primary selection:bg-secondary selection:text-primary",
+          )}
+        >
+          <NextTopLoader
+            showSpinner={true}
+            height={5}
+            color="#27AE60"
+            easing="cubic-bezier(0.53,0.21,0,1)"
+          />
+          <Header />
 
-        <Categories />
-        {children}
-        <Footer />
-        <SpeedInsights />
-        <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS} />
-        <GoogleAnalytics />
-      </body>
-    </html>
+          <Categories />
+          {children}
+          <Footer />
+          <SpeedInsights />
+          <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS} />
+          <GoogleAnalytics />
+        </body>
+      </html>
+    </ReactQueryProvider>
   );
 }
