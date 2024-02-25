@@ -1,5 +1,13 @@
-User-Agent: *
+# *
+User-agent: Googlebot
+User-agent: Bingbot
+User-agent: *
+Crawl-delay: 5
 Allow: /
-Disallow: /private/
+Disallow: /welcome-newsletter
 
-Sitemap: https://acme.com/sitemap.xml 
+# Host
+Host: https://lifetechhub.vercel.app
+
+# Sitemaps
+Sitemap: https://lifetechhub.vercel.app/sitemap.xml
