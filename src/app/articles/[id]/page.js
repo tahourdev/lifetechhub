@@ -35,6 +35,7 @@ export async function generateMetadata({ params }) {
           "km-KH": `/km-KH/${post.slug}`,
         },
       },
+
       twitter: {
         card: "",
         title: post.title,

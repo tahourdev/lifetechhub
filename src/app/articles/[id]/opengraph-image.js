@@ -8,7 +8,7 @@ import { getSinglePostDetails } from "../../../../services";
 export const alt = "About life tech hubs";
 export const size = {
   width: 1200,
-  height: 720,
+  height: 630,
 };
 
 export const contentType = "image/png";
