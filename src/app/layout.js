@@ -36,9 +36,11 @@ export const metadata = {
   description:
     "Your ultimate destination for tech updates, health insights, travel adventures, how-to guides, and cultural highlights. Explore a hub of diverse content that enriches your life with knowledge and entertainment.",
   keywords: "technology, health, travel, guides, culture, lifestyle",
+  twitter: {
+    card: "summary_large_image",
+  },
   author: "Life Tech Hubs",
   siteUrl: "https://lifetechhub.vercel.app/",
-  // image: "https://www.lifetechhubs.com/cover-image.jpg",
   verification: {
     google: "google-site-verification=123123123",
   },
@@ -53,6 +55,13 @@ export default function RootLayout({ children }) {
           <meta name="description" content={metadata.description} />
           <meta name="keywords" content={metadata.keywords} />
           <meta name="author" content={metadata.author} />
+
+          <meta name="google" content="notranslate" />
+          <meta
+            name="robots"
+            content="max-snippet:20, max-image-preview:large"
+          />
+          <meta name="robots" content="noindex, nofollow" />
 
           {/* Open Graph tags */}
           <meta property="og:title" content={metadata.title} />

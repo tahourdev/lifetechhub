@@ -8,7 +8,6 @@ export default async function page({ params }) {
   const slug = params.slug;
   const page = await getPage(slug);
   const content = page.content.raw;
-  console.log(page);
 
   return (
     <div className="ease max-w-screen-5xl px-4 transition-all duration-[.4s] md:px-14 5xl:mx-auto">
