@@ -36,6 +36,11 @@ export async function generateMetadata({ params }) {
         },
       },
 
+      robots: {
+        index: false,
+        follow: true,
+      },
+
       twitter: {
         card: "",
         title: post.title,

@@ -49,6 +49,11 @@ export async function generateMetadata({ params }) {
       alternates: {
         canonical: `/${page.slug}`,
       },
+      robots: {
+        index: false,
+        follow: true,
+        nocache: true,
+      },
       twitter: {
         card: "",
         title: page.title,
